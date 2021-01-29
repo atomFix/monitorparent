@@ -2,9 +2,12 @@ package com.code.monitor.cronjob.controller;
 
 import com.code.monitor.cronjob.worker.CornJobWorker;
 import com.code.monitor.cronjob.job.TimedThread;
+import com.code.monitor.mq.rabbit.config.RabbitConfig;
 import com.code.monitor.properties.PropertiesConfig;
 import com.code.monitor.properties.constant.ThreadPoolConstant;
 
+import java.lang.ref.PhantomReference;
+import java.lang.ref.WeakReference;
 import java.util.HashMap;
 
 /**
@@ -26,5 +29,9 @@ public class ThreadPoolControl {
         CornJobWorker.start(aTrue);
     }
 
-
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+        RabbitConfig.rabbitConfig.shutdown();
+    }
 }

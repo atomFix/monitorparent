@@ -2,12 +2,14 @@ package com.code.monitor.mq.rabbit.config;
 
 import com.code.monitor.exception.NotCreateConnectionException;
 import com.code.monitor.mq.rabbit.constant.RabbitConstant;
+import com.code.monitor.properties.PropertiesConfig;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import lombok.SneakyThrows;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.TimeUnit;
@@ -32,15 +34,16 @@ public class RabbitConfig {
     private Channel channel = null;
     private AtomicInteger size = new AtomicInteger(0);
     private int number = 0;
+    HashMap<String, String> configMap = PropertiesConfig.configMap;
 
 
     private RabbitConfig() {
         try {
-            connectionFactory = new ConnectionFactory();
+                    connectionFactory = new ConnectionFactory();
             //设置rabbitmq-server的地址
-            connectionFactory.setHost("121.36.110.208");
+            connectionFactory.setHost(configMap.getOrDefault("mq.host", "127.0.0.1"));
             //使用的端口号
-            connectionFactory.setPort(5672);
+            connectionFactory.setPort(Integer.parseInt(configMap.getOrDefault("mq.ip", "5672")));
             //使用的虚拟主机
             connectionFactory.setVirtualHost("/");
             connection = connectionFactory.newConnection();
@@ -55,7 +58,8 @@ public class RabbitConfig {
      * @return Channel
      */
     public synchronized ChannelEntry getChannel() {
-        Channel channel = null;
+
+        Channel channel;
         ChannelEntry channelEntry = null;
         //由连接工厂创建连接
         try {
