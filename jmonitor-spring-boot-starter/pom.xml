@@ -9,25 +9,16 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>testboot</artifactId>
+    <artifactId>jmonitor-spring-boot-starter</artifactId>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <springboot.version>2.2.8.RELEASE</springboot.version>
-    </properties>
-
-    <name>testboot</name>
+    <name>jmonitor-spring-boot-starter</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -35,15 +26,10 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.code.monotor</groupId>
-            <artifactId>jmonitor-spring-boot-starter</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <!-- <dependency>
             <groupId>com.code.monitor</groupId>
             <artifactId>monitor</artifactId>
             <version>1.0-SNAPSHOT</version>
-        </dependency>-->
+        </dependency>
     </dependencies>
 
     <build>

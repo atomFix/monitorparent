@@ -26,6 +26,7 @@ public class RabbitConfig {
     private static final int MAX_SIZE = 5;
     public static RabbitConfig rabbitConfig = new RabbitConfig();
     CopyOnWriteArrayList<ConnectionEntry> connectionPool;
+    HashMap<String, String> configMap = PropertiesConfig.configMap;
     /**
      * 创建连接工厂
      */
@@ -34,12 +35,11 @@ public class RabbitConfig {
     private Channel channel = null;
     private AtomicInteger size = new AtomicInteger(0);
     private int number = 0;
-    HashMap<String, String> configMap = PropertiesConfig.configMap;
 
 
     private RabbitConfig() {
         try {
-                    connectionFactory = new ConnectionFactory();
+            connectionFactory = new ConnectionFactory();
             //设置rabbitmq-server的地址
             connectionFactory.setHost(configMap.getOrDefault("mq.host", "127.0.0.1"));
             //使用的端口号
@@ -127,9 +127,10 @@ public class RabbitConfig {
      */
     public void shutdown() {
         connectionPool.forEach(ConnectionEntry::release);
+        connectionPool = null;
     }
 
-     public class ChannelEntry{
+    public class ChannelEntry {
         Channel channel;
         ConnectionEntry connectionEntry;
 
@@ -138,14 +139,14 @@ public class RabbitConfig {
             this.connectionEntry = connectionEntry;
         }
 
-         public Channel getChannel() {
-             return channel;
-         }
+        public Channel getChannel() {
+            return channel;
+        }
 
-         public ConnectionEntry getConnectionEntry() {
-             return connectionEntry;
-         }
-     }
+        public ConnectionEntry getConnectionEntry() {
+            return connectionEntry;
+        }
+    }
 
     public class ConnectionEntry {
         /**

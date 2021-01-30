@@ -51,6 +51,7 @@ public class CornJobWorker {
 
     public static void shutdown() {
         THREAD_POOL.shutdownNow();
+        URGENT_TASK_THREAD_POOL.shutdownNow();
     }
 
 }

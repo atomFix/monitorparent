@@ -14,7 +14,7 @@ public class AppTest {
      */
     @Test
     public void shouldAnswerWithTrue() throws Exception {
-        Class.forName("com.code.monitor.cronjob.controller.ThreadPoolControl");
+        Class.forName("com.code.monitor.cronjob.controller.ThreadPoolController");
     }
 
     @Test

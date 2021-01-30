@@ -7,6 +7,6 @@ package com.code.monitor;
  */
 public class Main {
     public static void main(String[] args) throws ClassNotFoundException {
-        Class.forName("com.code.monitor.cronjob.controller.ThreadPoolControl");
+        Class.forName("com.code.monitor.cronjob.controller.ThreadPoolController");
     }
 }
