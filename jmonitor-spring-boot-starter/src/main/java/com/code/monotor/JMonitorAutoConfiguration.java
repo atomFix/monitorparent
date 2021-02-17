@@ -19,7 +19,7 @@ import org.springframework.util.StringUtils;
 @ConditionalOnClass(ThreadPoolController.class)
 public class JMonitorAutoConfiguration {
 
-    @Value("${mq.host}")
+    @Value(" ${mq.host}")
     private String host;
     @Value("${mq.ip}")
     private String ip;
@@ -30,10 +30,10 @@ public class JMonitorAutoConfiguration {
     public ThreadPoolController threadPoolController() {
         System.out.println(host);
         System.out.println(ip);
-        if (StringUtils.hasLength(host)) {
+        if (!StringUtils.hasLength(host)) {
             host = "127.0.0.1";
         }
-        if (StringUtils.hasLength(ip)) {
+        if (!StringUtils.hasLength(ip)) {
             ip = "5672";
         }
         PropertiesConfig.configMap.put("mq.host", host);
