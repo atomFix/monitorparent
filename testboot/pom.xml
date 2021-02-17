@@ -39,11 +39,6 @@
             <artifactId>jmonitor-spring-boot-starter</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-        <!-- <dependency>
-            <groupId>com.code.monitor</groupId>
-            <artifactId>monitor</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>-->
     </dependencies>
 
     <build>

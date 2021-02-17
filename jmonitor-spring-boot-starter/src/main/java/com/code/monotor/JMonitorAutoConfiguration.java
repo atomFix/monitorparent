@@ -30,10 +30,10 @@ public class JMonitorAutoConfiguration {
     public ThreadPoolController threadPoolController() {
         System.out.println(host);
         System.out.println(ip);
-        if (StringUtils.isEmpty(host)) {
+        if (StringUtils.hasLength(host)) {
             host = "127.0.0.1";
         }
-        if (StringUtils.isEmpty(ip)) {
+        if (StringUtils.hasLength(ip)) {
             ip = "5672";
         }
         PropertiesConfig.configMap.put("mq.host", host);
