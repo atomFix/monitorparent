@@ -41,9 +41,9 @@ public class RabbitConfig {
         try {
             connectionFactory = new ConnectionFactory();
             //设置rabbitmq-server的地址
-            connectionFactory.setHost(configMap.getOrDefault("mq.host", "127.0.0.1"));
+            connectionFactory.setHost(configMap.getOrDefault("monitor.mq.host", "127.0.0.1").trim());
             //使用的端口号
-            connectionFactory.setPort(Integer.parseInt(configMap.getOrDefault("mq.ip", "5672")));
+            connectionFactory.setPort(Integer.parseInt(configMap.getOrDefault("monitor.mq.ip", "5672")));
             //使用的虚拟主机
             connectionFactory.setVirtualHost("/");
             connection = connectionFactory.newConnection();

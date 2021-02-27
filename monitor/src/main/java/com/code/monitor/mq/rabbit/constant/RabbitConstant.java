@@ -7,11 +7,17 @@ package com.code.monitor.mq.rabbit.constant;
  */
 public interface RabbitConstant {
 
-    //队列名称
+    /**
+     * 队列名称
+     */
     String QUEUE_NAME = "data_queue";
-    //要使用的exchange的名称
+    /**
+     * 要使用的exchange的名称
+     */
     String EXCHANGE_NAME = "data_exchange";
-    //要使用的exchange的名称
+    /**
+     * 要使用的exchange的名称
+     */
     String EXCHANGE_TYPE = "topic";
     /**
      * exchange使用的routing-key

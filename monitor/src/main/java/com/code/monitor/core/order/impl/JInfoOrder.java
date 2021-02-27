@@ -1,7 +1,6 @@
 package com.code.monitor.core.order.impl;
 
 
-import com.alibaba.fastjson.JSONObject;
 import com.code.monitor.core.cmd.ExecuteCmd;
 import com.code.monitor.core.constant.JavaOptionConstant;
 import com.code.monitor.core.constant.MagicConstant;
@@ -39,7 +38,8 @@ public class JInfoOrder implements Order {
             commandLine = s.substring(command.length()).split("\\s+");
         }
         commandLine = ArrayUtil.trim(commandLine);
-        return new JinfoEntity(Arrays.stream(noedefault).collect(Collectors.toList()), Arrays.stream(commandLine).collect(Collectors.toList()));
+        return new JinfoEntity(Arrays.stream(noedefault).collect(Collectors.toList()),
+                Arrays.stream(commandLine).collect(Collectors.toList()));
     }
 
     /**

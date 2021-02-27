@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -13,7 +14,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class JinfoEntity {
+public class JinfoEntity implements Serializable {
+    private static final long serialVersionUID = 6319858840461087554L;
     private List<String> noedefault;
     private List<String> commandLine;
 }

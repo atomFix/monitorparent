@@ -1,6 +1,7 @@
 package com.code.monotor.controller;
 
-import org.springframework.util.StringUtils;
+import com.code.monotor.service.TestA;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,15 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2021/2/17 15:36
  */
 @RestController
-@RequestMapping("/test")
 public class TestController {
 
+    @Autowired
+    TestA testA;
+
     @RequestMapping("/try")
-    public String test(String string) {
-        if (!StringUtils.hasLength(string)) {
-            return "error";
-        }
-        return string;
+    public String test() {
+        testA.insertA();
+        return "1";
     }
 
 }

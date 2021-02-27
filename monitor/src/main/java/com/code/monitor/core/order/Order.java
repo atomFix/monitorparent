@@ -1,9 +1,9 @@
 package com.code.monitor.core.order;
 
-import com.alibaba.fastjson.JSON;
 import com.code.monitor.properties.PropertiesConfig;
 
-import java.time.LocalDate;
+import java.net.InetAddress;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -15,7 +15,7 @@ import java.util.UUID;
  */
 public interface Order {
 
-    String serverName = PropertiesConfig.configMap.getOrDefault("server.name", UUID.randomUUID().toString().substring(0, 8));
+    String SERVER_NAME = PropertiesConfig.configMap.getOrDefault("monitor.server.name", UUID.randomUUID().toString().substring(0, 8));
 
     /**
      * 获取 T 对象的信息
@@ -28,9 +28,10 @@ public interface Order {
     String getOrderName();
 
     default Map<String, Object> getObject() throws Exception {
+        String hostAddress = InetAddress.getLocalHost().getHostAddress();
         HashMap<String, Object> map = new HashMap<>();
-        map.put("DateTime", LocalDate.now().toString());
-        map.put("ServerName", serverName);
+        map.put("DateTime", LocalDateTime.now().toString());
+        map.put("ServerName", hostAddress + ":" + SERVER_NAME);
         map.put("Data", getInfo());
         return map;
     }
