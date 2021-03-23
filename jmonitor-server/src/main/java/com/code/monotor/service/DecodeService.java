@@ -5,7 +5,7 @@ package com.code.monotor.service;
  * @version 1.0
  * @date 2021/3/20 18:49
  */
-public interface RestoreService {
+public interface DecodeService {
     /**
      * 数据持久化
      */

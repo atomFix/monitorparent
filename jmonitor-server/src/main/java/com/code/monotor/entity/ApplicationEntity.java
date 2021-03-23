@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "application")
 @Builder
-public class MyApplication {
+public class ApplicationEntity {
 
     @Id
     @Column(name = "id")
@@ -29,11 +29,14 @@ public class MyApplication {
     @Column(name = "app_id")
     private String appId;
 
-    @Column(name = "app_min_memory")
-    private String appMinMemory;
-
     @Column(name = "app_max_memory")
-    private String appMaxMemory;
+    private String appMaxHeap;
+
+    @Column(name = "app_new_size")
+    private String appNewSize;
+
+    @Column(name = "app_old_size")
+    private String appOldSize;
 
     @Column(name = "beat_heart")
     private LocalDateTime beatHeart;

@@ -24,7 +24,7 @@ public class RabbitServiceImpl implements MessageQueueService {
     public void send(String msg) {
         RabbitConfig.ChannelEntry channelEntry = RabbitConfig.rabbitConfig.getChannel();
         Channel channel = channelEntry.getChannel();
-        //发送消息使用的routing-key
+        //发送消息使用的 routing-key
         String routing_key = "data_routing_key.key1";
         //消息是byte[]，可以传递所有类型（转换为byte[]），不局限于字符串
         try {

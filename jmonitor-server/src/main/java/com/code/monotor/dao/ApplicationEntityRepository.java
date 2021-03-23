@@ -1,13 +1,12 @@
 package com.code.monotor.dao;
 
-import com.code.monotor.entity.MyApplication;
+import com.code.monotor.entity.ApplicationEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 /**
  * @author codeDorado
  * @version 1.0
  * @date 2021/3/20 20:MyApplicationRepository
  */
-public interface MyApplicationRepository extends JpaRepository<MyApplication, Long> {
+public interface ApplicationEntityRepository extends JpaRepository<ApplicationEntity, Long> {
 }

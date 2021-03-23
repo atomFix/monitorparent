@@ -33,7 +33,7 @@ public class RabbitConfig {
     private ConnectionFactory connectionFactory;
     private Connection connection = null;
     private Channel channel = null;
-    private AtomicInteger size = new AtomicInteger(0);
+    private final AtomicInteger size = new AtomicInteger(0);
     private int number = 0;
 
 
