@@ -49,4 +49,7 @@ public class ApplicationEntity {
     @Column(name = "effective")
     private Byte effective;
 
+    @Column(name ="params")
+    private String params;
+
 }

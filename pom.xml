@@ -116,6 +116,17 @@
                 <artifactId>spring-boot-starter-quartz</artifactId>
                 <version>${springboot.version}</version>
             </dependency>
+            <!--前端相关-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-thymeleaf</artifactId>
+                <version>${springboot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-websocket</artifactId>
+                <version>${springboot.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

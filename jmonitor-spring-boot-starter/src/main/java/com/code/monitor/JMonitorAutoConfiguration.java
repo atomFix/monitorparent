@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.StringUtils;
 
+import java.util.Properties;
+
 /**
  * 对 jmonitor 的自动配置相关 module
  *
@@ -25,6 +27,8 @@ public class JMonitorAutoConfiguration {
     private String ip;
     @Value("${monitor.server.name}")
     private String name;
+    @Value("${threadpool.period}")
+    private String period;
 
     @Bean
     @ConditionalOnMissingBean(ThreadPoolController.class)
@@ -41,6 +45,7 @@ public class JMonitorAutoConfiguration {
         PropertiesConfig.configMap.put("monitor.mq.host", host);
         PropertiesConfig.configMap.put("monitor.mq.ip", ip);
         PropertiesConfig.configMap.put("monitor.server.name", name);
+        PropertiesConfig.configMap.put("threadpool.period", period);
         return new ThreadPoolController();
     }
 

@@ -43,7 +43,7 @@ public class CornJobWorker {
     public static void start(boolean state) {
         HashMap<String, String> configMap = PropertiesConfig.configMap;
         int initialDelay = Integer.parseInt(configMap.getOrDefault(ThreadPoolConstant.INITIAL_DELAY, "5"));
-        int period = Integer.parseInt(configMap.getOrDefault(ThreadPoolConstant.PERIOD, "1"));
+        int period = Integer.parseInt(configMap.getOrDefault(ThreadPoolConstant.PERIOD, "5"));
         if (state) {
             THREAD_POOL.scheduleAtFixedRate(runnable, initialDelay, period, TimeUnit.SECONDS);
         }

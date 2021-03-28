@@ -15,8 +15,8 @@ import com.code.monitor.utils.MapperUtils;
 import com.google.common.base.CharMatcher;
 import com.google.common.base.Objects;
 import com.google.common.base.Splitter;
+import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
-import io.prometheus.client.Gauge;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
@@ -39,7 +40,6 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 public class DecodeServiceImpl implements DecodeService {
-
 
 
     /**
@@ -85,7 +85,6 @@ public class DecodeServiceImpl implements DecodeService {
                     setBasicMessage(flag, appId, localDate, k, v);
                 });
             }
-            // TODO: 没做完
             messageData.forEach((k, v) -> {
                 // 解析三种数据里面具体的内容
                 if (!key.equals(Constant.J_INFO) && k.equals(DATA)) {
@@ -134,17 +133,23 @@ public class DecodeServiceImpl implements DecodeService {
      * @return 信息集合
      */
     private List<KVEntity> getTrueParams(Object v) {
+        final String[] params = new String[2];
+        AtomicInteger index = new AtomicInteger(0);
+
         JSONObject jsonObject = JSON.parseObject(JSON.toJSONString(v));
         List<String> infoList = new ArrayList<>(16);
         jsonObject.forEach((k1, v1) -> {
-            getInfoList(infoList, v1.toString());
+            params[index.getAndIncrement()] = getInfoList(infoList, v1.toString());
         });
-        return infoList.stream().distinct()
+        List<KVEntity> kvCollections = infoList.stream().distinct()
                 .map(str -> str.substring(str.indexOf(':') + 1))
                 .map(str -> {
                     String[] split = str.split("=");
                     return new KVEntity(split[0], String.valueOf(Double.parseDouble(split[1]) / 1024 / 1024));
                 }).collect(Collectors.toList());
+        // 获取所有参数信息
+        kvCollections.add(new KVEntity("params", params[0] + params[1]));
+        return kvCollections;
     }
 
     /**
@@ -174,7 +179,7 @@ public class DecodeServiceImpl implements DecodeService {
      * @param infoList 解析后数据的存储集合
      * @param infos    要解析的数据
      */
-    public void getInfoList(List<String> infoList, String infos) {
+    public String getInfoList(List<String> infoList, String infos) {
         ArrayList<String> strings = Lists.newArrayList(Splitter.on("\",\"").omitEmptyStrings()
                 .trimResults(CharMatcher.is('"'))
                 .split(infos.substring(1, infos.length() - 1)));
@@ -182,5 +187,6 @@ public class DecodeServiceImpl implements DecodeService {
                 .filter(str -> str.contains("-XX:") && str.contains("Size="))
                 .distinct().collect(Collectors.toList());
         infoList.addAll(collect);
+        return String.join("<br>", strings);
     }
 }

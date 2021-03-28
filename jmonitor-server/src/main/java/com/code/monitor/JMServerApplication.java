@@ -9,6 +9,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  *
  * @author codedorado
  */
+// TODO: 加一个异常拦截器
 @SpringBootApplication
 @EnableScheduling
 public class JMServerApplication {

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>主机列表</title>
+    <link rel="stylesheet" href="/lib/layui/css/layui.css"/>
+</head>
+<style>
+    body {
+        background-color: #f2f2f2;
+    }
+
+    .layui-collapse {
+        margin-top: 10px;
+        background-color: #FFF;
+    }
+
+    h2.layui-colla-title {
+        background-color: #FFF;
+    }
+
+    .layui-colla-content {
+        background-color: #f9f9f9;
+    }
+</style>
+<body>
+<div style="padding: 20px; background-color: #F2F2F2;">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    <i class="layui-icon">&#xe68e;</i>
+                    <span>首页 / 主机列表</span>
+                    <span class="layui-badge-rim" style="float: right;margin-top: 12px;">v1.0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:each="item:${list}">
+        <div class="layui-collapse">
+            <!--主机信息-->
+            <div class="layui-colla-item">
+                <h2 class="layui-colla-title" th:text="${item.appId}" style="background-color: #FAFAFA;"></h2>
+                <div class="layui-colla-content">
+                    <p th:text="${item.appId}"></p>
+                    <p>
+                        最大堆：<span th:text="${item.appMaxHeap}"></span>&nbsp;
+                        新生代：<span th:text="${item.appNewSize}"></span>&nbsp;
+                        老年代：<span th:text="${item.appOldSize}"></span>&nbsp;
+                        <br>
+                        参数：<span th:utext="${item.params}"></span>
+                    </p>
+                </div>
+            </div>
+            <!--进程列表-->
+<!--            <div class="layui-colla-item" th:each="j:${item.get('jps')}">-->
+<!--                <h2 class="layui-colla-title" th:text="${j.value.className}+' ['+${j.key}+']'"></h2>-->
+<!--                <div class="layui-colla-content">-->
+<!--                    <p><i>VM Flags:</i></p>-->
+<!--                    <div th:each="parm:${j.value.parameters}"><p th:text="'&nbsp;&nbsp;'+${parm}"></p></div>-->
+<!--                </div>-->
+<!--            </div>-->
+        </div>
+    </div>
+
+</div>
+<script src="/lib/layui/layui.all.js"></script>
+</body>
+</html>

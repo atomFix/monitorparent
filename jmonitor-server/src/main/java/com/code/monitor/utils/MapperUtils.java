@@ -57,7 +57,7 @@ public class MapperUtils {
     }
 
     public static ApplicationEntity saveApplicationInfo(String appId, LocalDateTime dateTime, List<KVEntity> kvEntities) {
-        String maxHeapSize = null, maxNewSize = null, oldSize = null;
+        String maxHeapSize = null, maxNewSize = null, oldSize = null, params = null;
         for (KVEntity kvEntity : kvEntities) {
             if (Constant.MAX_HEAP_SIZE.equals(kvEntity.getKey())) {
                 maxHeapSize = kvEntity.getValue();
@@ -68,12 +68,16 @@ public class MapperUtils {
             if (Constant.MAX_OLD_SIZE.equals(kvEntity.getKey())) {
                 oldSize = kvEntity.getValue();
             }
+            if (Constant.PARAMS.equals(kvEntity.getKey())) {
+                params = kvEntity.getValue();
+            }
         }
         return ApplicationEntity.builder().appId(appId)
                 .beatHeart(dateTime)
                 .appMaxHeap(maxHeapSize)
                 .appNewSize(maxNewSize)
                 .appOldSize(oldSize)
+                .params(params)
                 .build();
     }
 

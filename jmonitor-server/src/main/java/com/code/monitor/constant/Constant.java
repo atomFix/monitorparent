@@ -16,4 +16,5 @@ public class Constant {
     public static final String MAX_HEAP_SIZE = "MaxHeapSize";
     public static final String MAX_NEW_SIZE = "MaxNewSize";
     public static final String MAX_OLD_SIZE = "OldSize";
+    public static final String PARAMS = "params";
 }
