@@ -32,8 +32,8 @@ public interface ApplicationEntityRepository extends JpaRepository<ApplicationEn
      * @param beatHeart
      * @return
      */
-    @Query("select new com.code.monitor.entity.ApplicationEntity(app.appId, app.beatHeart) from ApplicationEntity app where app.effective = 0 and app.beatHeart < ?1")
-    List<ApplicationEntity> findAllApp(LocalDateTime beatHeart);
+    @Query("select app.appId from ApplicationEntity app where app.effective = 0 and app.beatHeart < ?1")
+    List<String> findAllApp(LocalDateTime beatHeart);
 
     /**
      * 修改状态
